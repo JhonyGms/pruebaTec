@@ -3,7 +3,6 @@ package com.example.rest.model;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 @Data
 public class MovimientoReporte {
     private Long movimientoId;

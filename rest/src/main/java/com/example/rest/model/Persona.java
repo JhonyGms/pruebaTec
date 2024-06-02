@@ -1,8 +1,7 @@
 package com.example.rest.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
-import java.time.LocalDateTime;
 
 
 @Data
