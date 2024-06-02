@@ -13,7 +13,8 @@ public class Movimiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long cuentaId;
-    private Double monto;
+    private String tipoMovimiento;
+    private Double valor;
+    private Double saldo;
     private LocalDateTime fecha;
 }

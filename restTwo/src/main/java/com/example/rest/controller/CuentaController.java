@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,8 +37,10 @@ public class CuentaController {
         Optional<Cuenta> optionalCuenta = cuentaService.findById(id);
         if (optionalCuenta.isPresent()) {
             Cuenta cuenta = optionalCuenta.get();
-            cuenta.setNumeroCuenta(cuentaDetails.getNumeroCuenta());
-            cuenta.setSaldo(cuentaDetails.getSaldo());
+            cuenta.setNumeroCuenta((cuentaDetails.getNumeroCuenta() != null) ? cuentaDetails.getNumeroCuenta() : cuenta.getNumeroCuenta());
+            cuenta.setTipoCuenta((cuentaDetails.getTipoCuenta() != null) ? cuentaDetails.getTipoCuenta() : cuenta.getTipoCuenta());
+            cuenta.setEstado((cuentaDetails.getEstado() != null) ? cuentaDetails.getEstado() : cuenta.getEstado());
+            cuenta.setSaldo((cuentaDetails.getSaldo() != null) ? cuentaDetails.getSaldo() : cuenta.getSaldo());
             return ResponseEntity.ok(cuentaService.save(cuenta));
         } else {
             return ResponseEntity.notFound().build();

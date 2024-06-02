@@ -13,5 +13,7 @@ public class Cuenta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String numeroCuenta;
+    private String tipoCuenta;
+    private String estado;
     private Double saldo;
 }

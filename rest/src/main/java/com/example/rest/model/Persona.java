@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 public class Persona {
 
-    private Long id;
     private String nombre;
     private String genero;
     private String edad;

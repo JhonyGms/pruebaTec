@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +29,7 @@ public class MovimientoController {
 
     @PostMapping
     public Movimiento createMovimiento(@RequestBody Movimiento movimiento) {
+        movimiento.setFecha(LocalDate.EPOCH.atStartOfDay());
         return movimientoService.save(movimiento);
     }
 
@@ -36,9 +38,11 @@ public class MovimientoController {
         Optional<Movimiento> optionalMovimiento = movimientoService.findById(id);
         if (optionalMovimiento.isPresent()) {
             Movimiento movimiento = optionalMovimiento.get();
-            movimiento.setCuentaId(movimientoDetails.getCuentaId());
-            movimiento.setMonto(movimientoDetails.getMonto());
-            movimiento.setFecha(movimientoDetails.getFecha());
+            movimiento.setTipoMovimiento((movimientoDetails.getTipoMovimiento() != null) ? movimientoDetails.getTipoMovimiento() : movimiento.getTipoMovimiento());
+            movimiento.setValor((movimientoDetails.getValor() != null) ? movimientoDetails.getValor() : movimiento.getValor());
+            movimiento.setSaldo((movimientoDetails.getSaldo() != null) ? movimientoDetails.getSaldo() : movimiento.getSaldo());
+
+            movimiento.setFecha(LocalDate.EPOCH.atStartOfDay());
             return ResponseEntity.ok(movimientoService.save(movimiento));
         } else {
             return ResponseEntity.notFound().build();
