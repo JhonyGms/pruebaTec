@@ -29,7 +29,7 @@ public class MovimientoController {
 
     @PostMapping
     public Movimiento createMovimiento(@RequestBody Movimiento movimiento) {
-        movimiento.setFecha(LocalDate.EPOCH.atStartOfDay());
+        movimiento.setFecha(LocalDate.now());
         return movimientoService.save(movimiento);
     }
 
@@ -42,7 +42,7 @@ public class MovimientoController {
             movimiento.setValor((movimientoDetails.getValor() != null) ? movimientoDetails.getValor() : movimiento.getValor());
             movimiento.setSaldo((movimientoDetails.getSaldo() != null) ? movimientoDetails.getSaldo() : movimiento.getSaldo());
 
-            movimiento.setFecha(LocalDate.EPOCH.atStartOfDay());
+            movimiento.setFecha(LocalDate.now());
             return ResponseEntity.ok(movimientoService.save(movimiento));
         } else {
             return ResponseEntity.notFound().build();

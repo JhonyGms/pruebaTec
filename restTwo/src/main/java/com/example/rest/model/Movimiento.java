@@ -2,6 +2,8 @@ package com.example.rest.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -24,5 +26,5 @@ public class Movimiento {
     @Column(nullable = false)
     private Double saldo;
 
-    private LocalDateTime fecha = LocalDateTime.now();;
+    private LocalDate fecha = LocalDate.now();;
 }
