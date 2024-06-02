@@ -62,11 +62,6 @@ public class MovimientoController {
 
     @PostMapping("/{id}/movimientos")
     public Movimiento registrarMovimiento(@PathVariable Long id, @RequestParam Double monto, @RequestParam String tipo) {
-        try {
             return movimientoService.registrarMovimiento(id, monto, tipo);
-        } catch (Exception e) {
-            // Manejo de la excepción (devolución de error, etc.)
-            return null;
-        }
     }
 }
