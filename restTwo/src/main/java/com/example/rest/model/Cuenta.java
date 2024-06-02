@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Column;
 import lombok.Data;
 
 @Entity
@@ -12,8 +13,16 @@ public class Cuenta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, unique = true)
     private String numeroCuenta;
+
+    @Column(nullable = false)
     private String tipoCuenta;
+
+    @Column(nullable = false)
     private String estado;
-    private Double saldo;
+
+    @Column(nullable = false)
+    private Double saldo = 0.0;
 }

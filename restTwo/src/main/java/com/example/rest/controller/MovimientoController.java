@@ -51,7 +51,22 @@ public class MovimientoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteMovimiento(@PathVariable Long id) {
-        movimientoService.deleteById(id);
-        return ResponseEntity.noContent().build();
+        try {
+            movimientoService.deleteById(id);
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            // Manejo de la excepción (devolución de error, etc.)
+            return null;
+        }
+    }
+
+    @PostMapping("/{id}/movimientos")
+    public Movimiento registrarMovimiento(@PathVariable Long id, @RequestParam Double monto, @RequestParam String tipo) {
+        try {
+            return movimientoService.registrarMovimiento(id, monto, tipo);
+        } catch (Exception e) {
+            // Manejo de la excepción (devolución de error, etc.)
+            return null;
+        }
     }
 }
